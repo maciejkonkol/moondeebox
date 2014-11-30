@@ -1,0 +1,460 @@
+html{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: 'Open Sans Condensed', sans-serif;
+	background-color: #f4f4f4;
+	position: relative;
+}
+
+div#content{
+	float: left; 
+	width: 96%;
+	height: 100%;
+	margin-left: 4%;
+}
+
+div#menu{
+	float: left; 
+	width: 4%;
+	height: 100%;
+	background: #111111;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 4;
+}
+
+div#menu:hover{
+	width: 200px;
+}
+
+div#screenSizeContainer{
+	float: left; 
+	height: 100%; 
+	width: 100%;
+}
+
+div#objectBackgroundFoto{
+	position: fixed; 
+	top: 0;
+	left: 3%;
+	float: left;
+	background-size: cover; 
+	height: 100%; 
+	width: 97%; 
+	background-position: center center; 
+	background-repeat: no-repeat;
+	z-index: 1;
+}
+
+div#objectContent{
+	width: 98%; 
+	min-height: 100%;
+	float: left;
+	background-image: url('pulpit.jpg'); 
+	background-size: 100%; 
+	background-repeat: no-repeat;
+	padding-left: 1%;
+	padding-right: 1%;
+	z-index: 0;
+}
+
+div#objectMenu{
+	height: 10%;
+	width: 100%;
+	position: absolute;
+	margin-top: -66px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.6);
+	line-height: 84px;
+}
+
+div#objectMenu p.buttons{
+	float: left; 
+	margin: 0; 
+	padding: 0;
+	margin-left: 0.8rem;
+	position: relative;
+	line-height: normal;
+	height: 100%;
+}
+
+div#objectMenu p.buttons span{
+	float: left;
+	display: inline-block;
+	position: relative;
+	top: 50%;
+	height: 50%;
+	
+}
+
+div#objectMenu p.buttons a{
+	color: #333333;
+	font-size: 110%;
+	text-decoration: none;
+	background-color: rgba( 255, 255, 255, 0.5 );
+	display: inline-block;
+	float: left;
+	margin-right: 1rem;
+	margin-top: -1.1rem;
+	height: 2.2rem;
+	line-height: 2.2rem;
+	padding-left: 2.3rem;
+	padding-right: 1rem;
+	background-repeat: no-repeat;
+	background-size: 1.8rem;
+	background-position: 0.3rem 0.3rem;
+}
+
+div#objectMenu p.buttons a:hover{
+	background-color: rgba( 255, 255, 255, 1 );
+}
+
+div#objectMenu p.buttons a.addFriend{
+	background-image: url('../images/icons/add_friend.png');
+}
+
+div#objectMenu p.positions{
+	float: right; 
+	margin: 0; 
+	padding: 0; 
+	margin-left: 0px; 
+	text-align: right; 
+	margin-right: 2%; 
+	font-size: 170%;
+	height: 100%;
+}
+
+div#objectMenu p.positions a{
+	color: white;
+	text-decoration: none;
+	margin-right: 0.2rem;
+	margin-left: 0.2rem;
+	padding-left: 0.3rem;
+	padding-right: 0.3rem;
+	display: inline-block;
+	margin-top: -0.3rem;
+	float: left;
+	height: 100%;
+}
+
+div#objectMenu p.positions span{
+	margin-top: -0.3rem;
+	float: left;
+}
+
+div#objectMenu p.positions a.current{
+	border-style: solid;
+	border-width: 0 0 0.3rem 0;
+	border-color: red;
+}
+
+div#objectMenu div.avatarBox{
+	margin-top: -110px;
+	margin-left: 6%;
+	float: left;
+	display: inline-block;
+}
+
+div#objectMenu div.avatarBox img.avatar{
+	margin: 10px;
+	z-index: 2;
+	position: relative;
+	float: left;
+}
+
+div#objectMenu div.avatarBackground{
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 1;
+	margin-left: 6%;
+}
+
+div#objectMenu div.avatarBox div.top{
+	top: 0px;
+}
+
+div#objectMenu div.avatarBox div.bottom{
+	bottom: 0px;
+}
+
+h1{
+	font-weight: normal;
+	font-size: 400%;
+	font-weight: normal;
+	margin-left: 20px;
+}
+
+
+
+div.rightTopButonPanel{
+	position: absolute;
+	right: 10px;
+	top: 40px;
+}
+
+div.rightTopButonPanel a.button{
+	background-color: #DDDDDD;
+	display: inline-block;
+	font-size: 160%;
+	padding-top: 0.9rem;
+	padding-bottom: 0.9rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	border-style:  solid;
+	border-color: #CCCCCC;
+	border-width: 1px;
+	margin-left: 10px;
+}
+
+div.rightTopButonPanel a.button img{
+	vertical-align: middle;
+	margin: 5px;
+}
+/*
+---------- User Albums
+*/
+
+div.userAlbums{
+	float: left;
+	position: relative;
+	width: 100%;
+	font-size: 100%;
+}
+
+
+div.userAlbums a.addAlbum{
+	
+}
+
+div.userAlbums a.albumIcon{
+	width: 16.81rem;
+	height: 16.81rem;
+	float: left;
+	background-color: #CCCCCC;
+	margin: 1rem;
+	position: relative;
+	float: left;
+	background-size: cover; 
+	background-position: center center; 
+}
+
+div.userAlbums a.albumIcon span.title{
+	background-color: rgba( 255, 255, 2550, 0.6 );
+	width: 94%;
+	margin-left: 3%;
+	margin-right: 3%;
+	margin-bottom: 3%;
+	text-align: center;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	position: absolute;
+	bottom: 0;
+	display: inline-block;
+}
+
+div.userAlbums a.albumIcon:hover span.title{
+	background-color: rgba( 255, 255, 2550, 1 );
+}
+
+div.userAlbums a.imageIcon{
+	float: left;
+	position: relative;
+	padding: 0;
+	margin: 0;
+}
+
+div.userAlbums a.imageIcon img{
+	float: left;
+	padding: 0;
+	margin: 0;
+	margin: 3px;
+}
+
+div.imagesList{
+	float: left;
+	width: 99%;
+	margin-left: 0%;
+	margin-right: 0%;
+}
+
+
+div#dialogBox div.albumType{
+	float: left;
+}
+
+div#dialogBox form.addFoto>div{
+	width: 100%;
+	float: left;
+}
+
+div#dialogBox form.addFoto div.or{
+	padding-left: 10rem;
+	line-height: 3rem;
+	width: 50%;
+	float: left;
+}
+
+div#dialogBox form.addFoto div.albumType.active{
+	color: black;
+}
+
+div#dialogBox form.addFoto div.albumType.inactive{
+	color: #AAAAAA;
+}
+div#dialogBox div#dropbox{
+	border-style: dashed;
+	border-width: 5px;
+	border-color: #CCCCCC;
+	text-align: center;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+
+div#dialogBox form#fileUploadForm{
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------
+	Dropbox Element
+--------------------------*/
+
+#dropbox{
+	background:url('../img/background_tile_3.jpg');
+
+	border-radius:3px;
+	position: relative;
+	margin:80px auto 90px;
+	min-height: 290px;
+	overflow: hidden;
+	padding-bottom: 40px;
+    width: 990px;
+
+	box-shadow:0 0 4px rgba(0,0,0,0.3) inset,0 -3px 2px rgba(0,0,0,0.1);
+}
+
+#dropbox .message{
+	font-size: 11px;
+    text-align: center;
+    padding-top:160px;
+    display: block;
+}
+
+#dropbox .message i{
+	color:#ccc;
+	font-size:10px;
+}
+
+#dropbox:before{
+	border-radius:3px 3px 0 0;
+}
+
+/*-------------------------
+	Image Previews
+--------------------------*/
+
+#dropbox .preview{
+	width:245px;
+	height: 215px;
+	float:left;
+	margin: 55px 0 0 60px;
+	position: relative;
+	text-align: center;
+}
+
+#dropbox .preview img{
+	max-width: 240px;
+	max-height:180px;
+	border:3px solid #fff;
+	display: block;
+
+	box-shadow:0 0 2px #000;
+}
+
+#dropbox .imageHolder{
+	display: inline-block;
+	position:relative;
+}
+
+#dropbox .preview.done .imageDelete{
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: red;
+	width: 1rem;
+	height: 1rem;
+	z-index: 2;
+	cursor: pointer;
+}
+
+#dropbox .uploaded{
+	position: absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	background: url('../img/done.png') no-repeat center center rgba(255,255,255,0.5);
+	display: none;
+}
+
+#dropbox .preview.done .uploaded{
+	display: block;
+}
+
+/*-------------------------
+	Progress Bars
+--------------------------*/
+
+#dropbox .progressHolder{
+	position: absolute;
+	background-color:#252f38;
+	height:12px;
+	width:100%;
+	left:0;
+	bottom: 0;
+
+	box-shadow:0 0 2px #000;
+}
+
+#dropbox .progress{
+	background-color:#2586d0;
+	position: absolute;
+	height:100%;
+	left:0;
+	width:0;
+
+	box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset;
+
+	-moz-transition:0.25s;
+	-webkit-transition:0.25s;
+	-o-transition:0.25s;
+	transition:0.25s;
+}
+
+#dropbox .preview.done .progress{
+	width:100% !important;
+}

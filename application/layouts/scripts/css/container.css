@@ -1,0 +1,74 @@
+div.container{
+	width: 31.83%;
+	float: left;
+	margin-left: 0.75%;
+	margin-right: 0.75%;
+	background-color: white;
+	font-family: Roboto;
+	text-rendering: optimizelegibility;
+}
+
+div.container div.title{
+	float: left;
+	width: 100%;
+	border: solid #F2F2F2;
+	border-width: 0 0 1px 0;
+}
+
+div.container div.title h3{
+	margin-left: 3%;
+	font-weight: 300;
+	color: #80858e;
+	font-size: 2rem;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+}
+
+div.container div.content{
+	
+}
+
+div.container div.content > p{
+	color: #80858e;
+	font-size: 1.2rem;
+	margin-left: 3%;
+	margin-right: 3%;
+	font-weight: 300;
+	float: left;
+	width: 94%;
+}
+
+div.container div.content div.information_list{
+	margin-left: 3%;
+	margin-right: 3%;
+}
+
+div.container div.content div.information_list div.row{
+	
+}
+
+div.container div.content div.information_list div.row div.left{
+	width: 20%;
+	float: left;
+	color: #A0A5AE;
+	font-size: 1.2rem;
+	font-weight: 300;
+}
+
+div.container div.content div.information_list div.row div.left > p{
+	margin-bottom: 0.3em;
+	margin-top: 0.3em;
+}
+
+div.container div.content div.information_list div.row div.right{
+	width: 80%;
+	float: left;
+	color: #80858e;
+	font-size: 1.2rem;
+	font-weight: 300;
+}
+
+div.container div.content div.information_list div.row div.right > p{
+	margin-bottom: 0.3em;
+	margin-top: 0.3em;
+}

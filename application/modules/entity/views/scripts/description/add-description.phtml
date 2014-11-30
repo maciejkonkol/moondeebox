@@ -1,0 +1,43 @@
+<div class="container" style="width: 64.41%;" >
+	<div class="title" >
+		<h3>Opis - <?php echo $this->entity->getName(); ?></h3>
+	</div>
+	<div class="content" >
+		<style>
+			textarea#text{
+				border-color: #DDDDDD;
+			}
+			input#submit{
+				border: solid #DDDDDD 1px;
+				background-color: #F2F2F2;
+				font-size: 1.4em;
+				font-weight: 300;
+				font-family: Roboto;
+				padding-top: 0.3em;
+				padding-bottom: 0.3em;
+				padding-left: 0.7em;
+				padding-right: 0.7em;
+				margin-bottom: 1.3em;
+			}
+			dt{
+				float: left;
+				width: 90%;
+				margin-left: 3%
+			}
+			dt#text-label{
+				font-size: 1.3em;
+				color: #80858e;
+				font-family: Roboto;
+				font-weight: 300;
+				margin-top: 1em;
+				margin-bottom: 1em;
+			}
+			dd{
+				float: left;
+				width: 90%;
+				margin-left: 3%
+			}
+		</style>
+		<?php echo $this->form; ?>
+	</div>
+</div>

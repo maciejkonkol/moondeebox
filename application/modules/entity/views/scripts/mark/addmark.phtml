@@ -1,0 +1,6 @@
+<?php if( $this->result ): ?>
+	oceniono
+<?php else: ?>
+	Już wcześniej oceniłeś ten obiekt czy chcesz zmienić ocene?
+	<a href="<?php echo $this->baseUrl() ?>/entity/mark/changemark/object/<?= $this->object->getId(); ?>/mark/<?= $this->mark ?>" >Tak</a> <a href="" >Nie</a>
+<?php endif; ?>

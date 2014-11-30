@@ -1,0 +1,103 @@
+<?php echo $this->action( 'information', 'information', 'entity', array( 'entity' => $this->entity->getId(), 'no_entity_template' => 1  ) ); ?>
+
+<?php echo $this->action( 'best-description', 'description', 'entity', array( 'entity' => $this->entity->getId(), 'no_entity_template' => 1 ) ); ?>
+
+<?php echo $this->action( 'home', 'information', 'entity', array( 'entity' => $this->entity->getId(), 'no_entity_template' => 1 ) ); ?>
+
+<div id="maki" style="width: 100%; background: gray; float: left;" >
+	<?php for( $i = 1 ; $i < 21 ; $i++ ): ?>
+		<div style="width: 100%; margin-right: 1%; float: left; background: #91BE3F; margin-bottom: 1%;" >
+			<?php for( $j = 0 ; $j = rand( 0, 15 ) ; $j++ ): ?>
+				<?= $i ?><br/>
+			<?php endfor; ?>	
+		</div>
+	<?php endfor; ?>
+
+</div>
+<div id="maki2" style="width: 100%; background: #0398CA; float: left;" >
+	<div style="width: 48%; float: left; margin-right: 2%;" ></div>
+	<div style="width: 48%; float: left; margin-right: 2%;" ></div>
+</div>
+<script type="text/javascript" >
+	
+$(document).ready(function() {
+	//alert( $('#maki2').children().length );
+	//$('#maki').children()[1].css( "background-color", "red" );
+	var first = $('#maki').children()[1];
+	$(first).css( "background-color", "red" );
+	//alert( $(first).width() );
+	
+	minHeight = function( elements ){
+		var min_element = $( elements[0] );
+		
+		elements.each( function( i, element ){
+			//alert( $( element ) );
+			
+			if( min_element.height() > $(element).height() ){
+				min_element = $(element);
+			}
+			
+		});
+		
+		return min_element;
+	};
+	
+	$('#maki').children().each( function( i, element ){
+		if( i < $('#maki2').children().length ){
+			$( $('#maki2').children()[i] ).append( element );
+		}else{
+			//minHeight( $('#maki2').children() );
+			minHeight( $('#maki2').children() ).append( element );
+			//element.css('width', '100%');
+			//alert(1);
+		}
+	});
+	
+	/*	
+	$('html').css({ "font-size" : ( 2 * ( parseInt( $("body").width() ) * 0.005 ) ) + "px" } );
+	
+	$(window).resize(function() {
+		$('html').css({ "font-size" : ( 2 * ( parseInt( $("body").width() ) * 0.005 ) ) + "px" } );
+		resize();
+	});
+	
+	resize();
+	
+	$(window).scroll(function() {
+		resize();
+	});
+	
+	$('a.entity_menu_position').click( function( event ){
+		$(event.target).attr('href');
+		
+		$.get( $(event.target).attr('href') + '?no_entity_template=1', function( o ){
+			$('#objectContent').html( o );
+			window.history.pushState(
+				{ page: 'messages' },
+				'Messages',
+				$(event.target).attr('href')
+			);
+			$('html, body').animate({
+				scrollTop: ( $("#objectContent").offset().top - ( 3 * parseInt( $('html').css('font-size') ) ) )
+			}, 200);
+			
+		});
+		
+		event.stopPropagation();
+		return false;
+	});
+	
+	
+	window.onpopstate = function(event) {
+		$.get( document.location + '?no_entity_template=1', function( o ){
+			$('#objectContent').html( o );
+			$('html, body').animate({
+				scrollTop: ( $("#objectContent").offset().top - ( 3 * parseInt( $('html').css('font-size') ) ) )
+			}, 200);
+		});
+
+		//alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
+	};
+	*/
+});
+</script>

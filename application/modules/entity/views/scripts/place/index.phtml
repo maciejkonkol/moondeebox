@@ -1,0 +1,16 @@
+<h1>Miejsca w ktorych jestes aktywny</h1>
+
+<?php foreach( $this->places as $place ): ?>
+	<a href="<?php echo $this->url( array( 'entity' => $place->getId() ), 'object' ); ?>" style="width: 200px;
+height: 120px;
+padding-top: 80px;
+margin-right: 10px;
+margin-bottom: 10px;
+margin-top: 10px;
+background: #2586d0;
+color: white;
+display: inline-block;
+text-align: center;" >
+		<?php echo $place->getName(); ?>
+	</a>
+<?php endforeach; ?>

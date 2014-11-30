@@ -1,0 +1,12 @@
+<div style="padding: 6%; border: solid #dddddd 1px; background-color: #f4f4f4; text-decoration: none; color: #555555; width: 85%; text-align: left; " >
+	<?php if( $this->description->getMark()->getValue() ): ?>
+		<span style="font-size: 1.2em; font-weight: 500;" ><?php echo round( $this->description->getMark()->getValue() * 10 ); ?>%</span><br/>
+	<?php endif; ?>
+
+	<p style="display: inline-block; margin-bottom: 0; margin-top: 0.2em; padding-top: 0;" >uznało ten opis za pomocny</p>
+	<?php if( !$this->description->isUserMark() ): ?>
+		<p style="display: inline-block; margin-top: 0.4em; margin-bottom: 0; font-weight: 700; " >
+			Czy uznajesz ten opis za pomocny? 
+		</p>
+	<?php endif; ?>
+</div>

@@ -1,0 +1,44 @@
+<div style="width: 98.4%; margin-left: 0.8%; margin-right: 0.8%; text-align: center;  background-color: white; " >
+	<p style="padding: 2em; border: solid #DDDDDD 1px;" >
+		<a href="<?php echo $this->url( array( 'entity' => $this->entity->getId() ), 'add-description' ); ?>" style="display: inline-block; border: solid #DDDDDD 1px; color: #777777; text-decoration: none; background-color: #F2F2F2; padding-left: 1em; padding-right: 1em; padding-bottom: 0.5em; padding-top: 0.5em; font-size: 1.4em; font-weight: 300; font-family: Roboto;" >Byłeś, widziałeś? Dodaj opis.</a>
+	</p>
+</div>
+<?php if( $this->descriptions ): ?>
+	<?php foreach( $this->descriptions as $description ): ?>
+		<?php $this->description = $description; ?>
+		<div class="container" >
+			<div class="title" >
+				<h3>Opis</h3>
+			</div>
+			<div class="content" >
+				<?php //echo $description->getMark()->getValue(); ?>
+				<?php //echo $description->getText(); ?>
+				<div style="float: left; width: 31%; margin: 2%; height: 10.6em; background: url( '<?php echo $this->baseUrl(); ?>/images/goya.jpg' ); background-size: cover;" >
+
+				</div>
+				<div style="float: left; width: 65%; margin-top: 2%;" >
+					<div style="float: left; width: 29%; margin-right: 1%; " >
+						<br/>
+					</div>
+					<div style="float: left; width: 67%; margin-left: 2%;" id="mark-describe" >
+						<?php echo $this->render('description/partial/describe-mark.phtml'); ?>
+					</div>
+				</div>
+				<?php if( $this->description ): ?>
+					<p><?php echo nl2br( $this->description->getText() ); ?></p>
+					<p style="text-align: right;" >
+						<a href="<?php echo $this->url( array( 'description' => $description->getId() ), 'description' ); ?>" >Więcej</a>
+					</p>
+				<?php endif; ?>
+			</div>
+		</div>
+		
+	<?php endforeach; ?>
+<?php else: ?>
+	<div style="width: 98.4%; margin-left: 0.8%; margin-right: 0.8%; margin-top:2em; text-align: center;  background-color: white; " >
+		<p style="padding: 2em; border: solid #DDDDDD 1px;" >
+			Obiekt nie ma jeszcze opisu
+		</p>
+	</div>
+	
+<?php endif; ?>

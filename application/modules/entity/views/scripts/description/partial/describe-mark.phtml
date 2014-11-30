@@ -1,0 +1,40 @@
+<div style="padding: 6%; border: solid #dddddd 1px; background-color: #f4f4f4; text-decoration: none; color: #555555; width: 85%; text-align: left; " >
+	<?php if( $this->description->getMark()->getValue() ): ?>
+		<span style="font-size: 1.2em; font-weight: 500;" ><?php echo round( $this->description->getMark()->getValue() * 10 ); ?>%</span><br/>
+	<?php endif; ?>
+
+	<p style="display: inline-block; margin-bottom: 0; margin-top: 0.2em; padding-top: 0;" >uznało ten opis za pomocny</p>
+	<?php if( !$this->description->isUserMark() ): ?>
+		<p style="display: inline-block; margin-top: 0.4em; margin-bottom: 0; font-weight: 700; " >
+			Czy uznajesz ten opis za pomocny? <?php echo $this->description->isUserMark(); ?>
+		</p>
+	<?php endif; ?>
+</div>
+<?php if( !$this->description->isUserMark() ): ?>
+	<div style="float: left; border: solid #dddddd; border-width: 0 1px 1px 1px; width: 97%; background-color: #f4f4f4;" >
+		<?php echo $this->ajaxLink("Tak",
+							$this->url( array( 'object' => $this->description->getId(), 'mark' => 10 ), 'mark-description' ),
+							array( 'update' => '#mark-describe',
+								'attribs' => array(
+									'style' => 'line-height: 2.5em; text-align: center; float: left; text-decoration: none; color: #555555; display: inline-block; width: 50%; border: solid #dddddd; border-width: 0 1px 0 0;'
+								)
+							),
+							array(
+								'no_layout' => 1,
+								'no_entity_template' => 1
+							)
+		); ?>
+		<?php echo $this->ajaxLink("Nie",
+							$this->url( array( 'object' => $this->description->getId(), 'mark' => 0 ), 'mark-description' ),
+							array( 'update' => '#mark-describe',
+								'attribs' => array(
+									'style' => 'line-height: 2.5em; text-align: center; float: left; text-decoration: none; color: #555555; display: inline-block; width: 49%;'
+								)
+							),
+							array(
+								'no_layout' => 1,
+								'no_entity_template' => 1
+							)
+		); ?>
+	</div>
+<?php endif; ?>
