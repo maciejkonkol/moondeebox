@@ -89,49 +89,49 @@ class Moondee_Image extends Moondee_Application_MoondeeDatabaseObject
     protected $album = null;
 	
 
-	/**
-     * Metoda ustawia model
-     *
-     * @return void
-	 * @access protected
-     */ 
-	protected function setModel() {
-		$this->model = new Moondee_Image_Model_Image();
-	}
+    /**
+    * Metoda ustawia model
+    *
+    * @return void
+    * @access protected
+    */ 
+    protected function setModel() {
+        $this->model = new Moondee_Image_Model_Image();
+    }
 
-	/**
-     * Metoda ustawia sciezke i nazwe pliku
-     *
-     * @return void
-	 * @access public
-     */ 
-	public function setPathAndFile() {
-		if( $this->id ){
-			$tab = str_split( sprintf( "%1$020d", $this->id ), 2 );
-			$file = $tab[ count( $tab ) - 1 ];
-			unset( $tab[ count( $tab ) - 1 ] );
-			
-			$this->path = implode( "/", $tab );
-			$this->file = $file;
-		}
-	}
+    /**
+    * Metoda ustawia sciezke i nazwe pliku
+    *
+    * @return void
+    * @access public
+    */ 
+    public function setPathAndFile() {
+        if( $this->id ){
+            $tab = str_split( sprintf( "%1$020d", $this->id ), 2 );
+            $file = $tab[ count( $tab ) - 1 ];
+            unset( $tab[ count( $tab ) - 1 ] );
+
+            $this->path = implode( "/", $tab );
+            $this->file = $file;
+        }
+    }
 	
-	/**
-     * Metoda zwraca tytuł
-     *
-     * @return string
-	 * @access public
-     */ 
-	public function getTitle() {
-		return $this->title;
-	}
+    /**
+    * Metoda zwraca tytu�
+    *
+    * @return string
+    * @access public
+    */ 
+    public function getTitle() {
+            return $this->title;
+    }
 
-	/**
-     * Metoda zwraca opis
-     *
-     * @return string
-	 * @access public
-     */ 
+    /**
+    * Metoda zwraca opis
+    *
+    * @return string
+    * @access public
+    */ 
 	public function getDescribe() {
 		return $this->describe;
 	}
@@ -166,7 +166,7 @@ class Moondee_Image extends Moondee_Application_MoondeeDatabaseObject
 	public function setOwner( $object_id = null ) {
 		if( !$object_id ){
 			if( $this->id ){
-				$this->owner = $this->getDatabaseObjectRow()->findParentRow( 'Moondee_Image_Model_Album' )['owner'];
+                            $this->owner = $this->getDatabaseObjectRow()->findParentRow( 'Moondee_Image_Model_Album' )['owner'];
 			}else{
 				return null;
 			}
@@ -216,9 +216,9 @@ class Moondee_Image extends Moondee_Application_MoondeeDatabaseObject
      * @return string
 	 * @access public
      */ 
-	public function getPath() {
-		return $this->path;
-	}
+    public function getPath() {
+        return $this->path;
+    }
 
 	/**
      * Metoda zwraca nazwe pliku
@@ -249,6 +249,16 @@ class Moondee_Image extends Moondee_Application_MoondeeDatabaseObject
      */ 
 	public function setExtension( $extension ) {
 		$this->extension = $extension;
+	}
+
+	/**
+     * Metoda zwraca sciezke wraz z nazwa pliku obrazka
+     *
+     * @return string
+	 * @access public
+     */ 
+	public function getSrc() {
+		return $this->getPath().'/'.$this->getFile().'.'.$this->getExtension();
 	}
 
 	/**

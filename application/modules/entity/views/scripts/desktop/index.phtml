@@ -2,7 +2,10 @@
 
 <?php if( $this->entity->getObjectClass() == 'Moondee_Entity_User' ): ?>
 	<?php echo $this->action( 'description', 'description', 'entity', array( 'entity' => $this->entity->getId(), 'no_entity_template' => 1  ) ); ?>
-<?php else: ?>
+<?php endif; ?>
+
+<?php if( $this->entity->getObjectClass() == 'Moondee_Entity_Attraction_Place' ): ?>
 	<?php echo $this->action( 'best-description', 'description', 'entity', array( 'entity' => $this->entity->getId(), 'no_entity_template' => 1  ) ); ?>
 <?php endif; ?>
 
+<?php echo $this->action( 'all-images', 'image', 'image', array( 'entity' => $this->entity->getId(), 'no_entity_template' => 1, 'num' => 6  ) ); ?>

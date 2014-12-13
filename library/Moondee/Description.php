@@ -104,7 +104,7 @@ class Moondee_Description extends Moondee_Application_MoondeeDatabaseObject
      * @return void
 	 * @access public
      */
-	public function setWriter( $owner ) {
+	public function setWriter( $writer ) {
 		$this->writer = $writer;
 	}
 

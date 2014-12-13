@@ -63,6 +63,7 @@ div#objectContent{
 	background-repeat: no-repeat;
 	padding-left: 1%;
 	padding-right: 1%;
+        padding-top: 20px;
 	z-index: 0;
 }
 
@@ -111,6 +112,7 @@ div#objectMenu p.buttons a{
 	background-repeat: no-repeat;
 	background-size: 1.8rem;
 	background-position: 0.3rem 0.3rem;
+        font-weight: 300;
 }
 
 div#objectMenu p.buttons a:hover{
@@ -295,7 +297,7 @@ div#dialogBox form.addFoto>div{
 	float: left;
 }
 
-div#dialogBox form.addFoto div.or{
+div#dialogBox form.addFoto div._or{
 	padding-left: 10rem;
 	line-height: 3rem;
 	width: 50%;

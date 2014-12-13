@@ -43,9 +43,8 @@ abstract class Moondee_Application_DatabaseObject
         if( $data != null ){
             if( is_int( $data ) ){
                 if( !$this->setFromDatabase( $data ) ){
-					unset( $this );
-				}
-				//echo '<pre>'; print_r( $this ); echo '</pre>';
+                    unset( $this );
+		}
             }else{
                 $this->setFromData( $data );
             }
@@ -82,11 +81,12 @@ abstract class Moondee_Application_DatabaseObject
         $model = $this->getModel();
         $objectData = $model->find( $object_id )->current();
 		
-		if( !$objectData ){
-			return false;
-		}
+        if( !$objectData ){
+            return false;
+        }
+        
         $this->setFromData( $objectData );
-		return true;
+        return true;
     }
 	
 	/**
@@ -97,9 +97,9 @@ abstract class Moondee_Application_DatabaseObject
      */ 
     protected function setFromData( $objectData ){
         if( $objectData ){
-			if( is_object( $objectData ) && 'Zend_Db_Table_Row' == get_class( $objectData ) ){
-				$this->setDatabaseObjectRow( $objectData );
-			}
+            if( is_object( $objectData ) && 'Zend_Db_Table_Row' == get_class( $objectData ) ){
+                $this->setDatabaseObjectRow( $objectData );
+            }
 			
             foreach ( $objectData as $key => $value ){
                 $this->$key = $value;
@@ -116,11 +116,11 @@ abstract class Moondee_Application_DatabaseObject
      * @return Zend_Db_Table_Row
      */ 
     protected function getDatabaseObjectRow(){
-		if( !$this->database_object_row ){
-			$this->setDatabaseObjectRow();
-		}
-		
-		return $this->database_object_row;
+        if( !$this->database_object_row ){
+                $this->setDatabaseObjectRow();
+        }
+
+        return $this->database_object_row;
     }
 
     /**
@@ -133,19 +133,19 @@ abstract class Moondee_Application_DatabaseObject
      * @return void
      */ 
     protected function setDatabaseObjectRow( $row = null ){
-		if( $row ){
-			$this->database_object_row = $row;
-		}else{
-			$model = $this->getModel();
+        if( $row ){
+                $this->database_object_row = $row;
+        }else{
+            $model = $this->getModel();
 
-			if( $this->id ){
-				$row = $model->find( $this->id )->current();
-			}else{
-				$row = $model->createRow();
-			}
-			
-			$this->database_object_row = $row;
-		}
+            if( $this->id ){
+                $row = $model->find( $this->id )->current();
+            }else{
+                $row = $model->createRow();
+            }
+
+            $this->database_object_row = $row;
+        }
     }
 
     /**

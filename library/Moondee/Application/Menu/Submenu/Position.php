@@ -73,51 +73,40 @@ class Moondee_Application_Menu_Submenu_Position
 		return $this->url['action'];
 	}
 
-	/**
-     * Metoda zwraca nazwe pozycji menu
-     *
-     * @return string
-	 * @access public
-     */
-	public function getLabel() {
-		return $this->label;
-	}
-
-
-	/**
-     * Metoda zwraca nazwe reoutera
-     *
-     * @return string
-	 * @access public
-     */
-	public function getRout() {
-		return $this->rout;
-	}
+    /**
+    * Metoda zwraca nazwe pozycji menu
+    *
+    * @return string
+    * @access public
+    */
+    public function getLabel() {
+        return $this->label;
+    }
 	
-	/**
-     * Metoda zwraca kod html wyrenderowanej pozycji submenu
-     *
-     * @return string
-	 * @access public
-     */
-	public function render() {
-		$url = new Zend_View_Helper_Url();
-		
-		$href = $url->url( 
-			$this->url, 
-			$this->getModule() ."-". $this->getController() ."-". $this->getAction(), 
-			true 
-		);
-		
-		
-		$html = '<li style="display: inline-block; border: solid #cdced0; border-width: 1px 0 1px 1px;  ">';
-		$html .= '<a class="" href="'.$href.'" style="display: inline-block; color: #555555; text-decoration: none; padding: 1em;" >';
-		$html .= $this->getLabel();
-		$html .= '</a>';
-		$html .= '</li>';
-		
-		return $html;
-	}
+    /**
+    * Metoda zwraca kod html wyrenderowanej pozycji submenu
+    *
+    * @return string
+    * @access public
+    */
+    public function render() {
+        $url = new Zend_View_Helper_Url();
+
+        $href = $url->url( 
+            $this->url, 
+            $this->getModule() ."-". $this->getController() ."-". $this->getAction(), 
+            true 
+        );
+
+
+        $html = '<li style="display: inline-block; border: solid #cdced0; border-width: 1px 0 1px 1px;  ">';
+        $html .= '<a class="" href="'.$href.'" style="display: inline-block; color: #555555; text-decoration: none; padding: 1em;" >';
+        $html .= $this->getLabel();
+        $html .= '</a>';
+        $html .= '</li>';
+
+        return $html;
+    }
 
 
 }

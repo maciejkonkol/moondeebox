@@ -27,7 +27,7 @@ class Moondee_Description_Model_Description extends Zend_Db_Table_Abstract
 			->order( 'ma.value DESC' )
 			->columns( array( 
 				'id' => 'd.id', 
-				'owner' => 'd.owner', 
+				'writer' => 'd.writer', 
 				'object_id' => 'd.object_id',
 				'text' => 'd.text'
 			));

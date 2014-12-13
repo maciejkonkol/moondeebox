@@ -165,72 +165,101 @@ abstract class Moondee_Entity_Attraction extends Moondee_Entity
 		Moondee_Mark_Helper::changeMarkObject( $this->id, $judge, $value );
 	}
 
-	/**
-     * Metoda usuwa ocene obiektu
-     *
-	 * @param integer $judge Id obiektu oceniającego
-     * @return void
-	 * @access public
-     */ 
-	public function deleteMark( $judge ) {
-		Moondee_Mark_Helper::deleteMarkFromObject( $this->id, $judge );
-	}
+    /**
+    * Metoda usuwa ocene obiektu
+    *
+    * @param integer $judge Id obiektu oceniającego
+    * @return void
+    * @access public
+    */ 
+    public function deleteMark( $judge ) {
+        Moondee_Mark_Helper::deleteMarkFromObject( $this->id, $judge );
+    }
 
+    /**
+    * Metoda sprawdza czy obiekt został już oceniony
+    *
+    * @return Moondee_Mark | bool
+    * @access public
+    */ 
+    public function isMark( $judge ) {
+        $mark = Moondee_Mark_Helper::getMark( $this->id, $judge );
+
+        if( $mark ){
+            return $mark;
+        }else{
+            false;
+        }
+    }
+
+    /**
+    * Metoda zwraca ocene nadana przez obiekt
+    *
+    * @return Moondee_Mark | null
+    * @access public
+    */ 
+    public function getMark( $judge ) {
+        $mark = Moondee_Mark_Helper::getMark( $this->id, $judge );
+
+        if( $mark ){
+            return $mark;
+        }else{
+            null;
+        }
+    }
+
+    /**
+    * Metoda zwraca opis atrakcji który posiadanajwyższą ocene
+    *
+    * @return Moondee_Description | null
+    * @access public
+    */ 
+    public function getBestDescription() {
+
+        return Moondee_Description_Helper::getObjectBestDescription( $this->id );
+    }
+
+    /**
+    * Metoda zwraca ilość opisow jaką posiada dany obiekt
+    *
+    * @return integer
+    * @access public
+    */ 
+    public function getNumDescriptions() {
+        if( !$this->num_descriptions ){
+            $this->num_descriptions = Moondee_Description_Helper::getObjectNumDescription( $this->id );
+        }
+
+        return $this->num_descriptions;
+    }
+        
+    /**
+    * Metoda zwraca pozycje menu obrazkow
+    *
+    * @return Moondee_Application_Menu_Submenu_Position[]
+    */ 
+    public function getImageMenuPositions() {
+        return array(
+            new Moondee_Application_Menu_Submenu_Position('Wszystkie Foty', array( "module" => "image", "controller" => "image", "action" => "all-images", "entity" => $this->id ))
+        );
+    }
+	
 	/**
-     * Metoda sprawdza czy obiekt został już oceniony
-     *
-     * @return Moondee_Mark | bool
-	 * @access public
-     */ 
-	public function isMark( $judge ) {
-		$mark = Moondee_Mark_Helper::getMark( $this->id, $judge );
-		
-		if( $mark ){
-			return $mark;
-		}else{
-			false;
+    * Metoda dodaje obrazek
+    *
+    * @param Zend_Form_Element_File $file 
+    * @return Moondee_Image
+    * @access public
+    */ 
+    public function addImage( $file ) {
+		$album = $this->albumExist( (string) $this->name.$this->id );
+				
+		if( $album == null ){
+			$album = $this->addAlbum( (string) $this->name.$this->id );
 		}
-	}
-
-	/**
-     * Metoda zwraca ocene nadana przez obiekt
-     *
-     * @return Moondee_Mark | null
-	 * @access public
-     */ 
-	public function getMark( $judge ) {
-		$mark = Moondee_Mark_Helper::getMark( $this->id, $judge );
+        
 		
-		if( $mark ){
-			return $mark;
-		}else{
-			null;
-		}
-	}
-
-	/**
-     * Metoda zwraca opis atrakcji który posiadanajwyższą ocene
-     *
-     * @return Moondee_Description | null
-	 * @access public
-     */ 
-	public function getBestDescription() {
-		
-		return Moondee_Description_Helper::getObjectBestDescription( $this->id );
-	}
-
-	/**
-     * Metoda zwraca ilość opisow jaką posiada dany obiekt
-     *
-     * @return integer
-	 * @access public
-     */ 
-	public function getNumDescriptions() {
-		if( !$this->num_descriptions ){
-			$this->num_descriptions = Moondee_Description_Helper::getObjectNumDescription( $this->id );
-		}
-		
-		return $this->num_descriptions;
+		return $album->addImage($file);
 	}
 }
 ?>

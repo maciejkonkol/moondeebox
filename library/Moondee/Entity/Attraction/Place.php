@@ -78,16 +78,5 @@ class Moondee_Entity_Attraction_Place extends Moondee_Entity_Attraction
 	
 	
 
-	/**
-     * Metoda zwraca pozycje menu obrazkow
-     *
-     * @return Moondee_Application_Menu_Submenu_Position[]
-     */ 
-	public function getImageMenuPositions() {
-		return array(
-			new Moondee_Application_Menu_Submenu_Position('Albumy', array( "module" => "image", "controller" => "image", "action" => "albums", "entity" => $this->id ) ),
-			new Moondee_Application_Menu_Submenu_Position('Wszystkie Foty', array( "module" => "image", "controller" => "image", "action" => "albums", "entity" => $this->id ))
-		);
-	}
 }
 ?>

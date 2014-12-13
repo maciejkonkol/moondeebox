@@ -3,7 +3,7 @@
 </h1>
 
 <?php foreach( $this->images as $image ): ?>
-	<img style="width: 200px;" src="<?php echo $this->baseUrl(); ?>/images/<?php echo $image->getPath().'/'.$image->getFile().'.'.$image->getExtension(); ?>" />
+    <img style="width: 200px;" src="<?php echo $this->baseUrl(); ?>/images/<?php echo $image->getPath().'/'.$image->getFile().'.'.$image->getExtension(); ?>" />
 <?php endforeach; ?>
 
 <?php echo $this->form; ?>

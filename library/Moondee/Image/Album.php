@@ -174,27 +174,26 @@ class Moondee_Image_Album extends Moondee_Application_MoondeeDatabaseObject
 			}
 		}
 	}
-
-	/**
-     * Metoda dodaje obrazek
-     *
-	 * @param Zend_Form_Element_File $file 
-     * @return bool
-	 * @access public
-     */ 
-	public function addImage( $file ) {
+	
+    /**
+    * Metoda dodaje obrazek
+    *
+    * @param Zend_Form_Element_File $file 
+    * @return Moondee_Image
+    * @access public
+    */ 
+    public function addImage( $file ) {
 		Zend_Db_Table::getDefaultAdapter()->beginTransaction();
 		
 		//Tworzenie obiektu obrazka
 		$image = new Moondee_Image();
 		$image->save();
-		
 		$image->setPathAndFile();
 		$image->setAlbum( $this->id );
 		$image->setOwner( $this->owner );
 		$image->setExtension( $file->getFileExtension() );
 		
-		//Sprawdzenie czy istnieje folderow do obrazka jesli nie to tworzenie go
+		//Sprawdzenie czy istnieje folder do obrazka jesli nie to tworzenie go
 		$path = Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('moondee')['image']['path'].'/'.$image->getPath();
 		
 		if( !is_dir( $path ) ){
@@ -213,42 +212,42 @@ class Moondee_Image_Album extends Moondee_Application_MoondeeDatabaseObject
 		//Przenoszenie pliku do docelowego miejsca
 		if( $file->receive() ){
 			$image->save();
-			Zend_Db_Table::getDefaultAdapter()->commit();
-			
-			return true;
+			Zend_Db_Table::getDefaultAdapter()->commit();			
 		}else{
 			Zend_Db_Table::getDefaultAdapter()->rollBack();
 			
 			return false;
 		}
 		
+		$proxy_image = new Moondee_Application_Proxy( $image );
+		
 		if( $this->images ){
-			$this->images[ $image->id ] = new Moondee_Application_Proxy( $image );
+			$this->images[ $image->id ] = $proxy_image;
 		}
+		
+		return $proxy_image;
 		
 	}
 
-	/**
-     * Metoda zapisuje obrazki
-     *
-     * @return void
-	 * @access public
-     */ 
-	public function saveImages() {
-		if( $this->images ){
-			foreach( $this->images as $image ){
-				$image->save();
-			}
-		}
-		
-		$delete_images_id = array();
-				
-		if( $this->deleted_images ){
-			Moondee_Image_Helper::deleteImages( $this->deleted_images );
-			
-			$this->deleted_images = array();
-		}
-	}
+    /**
+    * Metoda zapisuje obrazki
+    *
+    * @return void
+    * @access public
+    */ 
+    public function saveImages() {
+        if( $this->images ){
+            foreach( $this->images as $image ){
+                $image->save();
+            }
+        }
+
+        if( $this->deleted_images ){
+            Moondee_Image_Helper::deleteImages( $this->deleted_images );
+
+            $this->deleted_images = array();
+        }
+    }
 
 
 }

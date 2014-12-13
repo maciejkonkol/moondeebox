@@ -1,0 +1,11 @@
+<div class="container" >
+    <div class="title" >
+		<h3>Zdjęcia</h3>
+	</div>
+	<div class="content" >
+        <?php if( $this->images ) foreach( $this->images as $image ): ?>
+            <img src="<?php echo $this->thumb( $this->baseUrl().'/images/'.$image->getSrc(), 200, 200 ); ?>" />
+        <?php endforeach; ?>
+	</div>
+    <?php echo $this->form; ?>
+</div>

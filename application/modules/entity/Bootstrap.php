@@ -20,7 +20,7 @@ class Entity_Bootstrap extends Zend_Application_Module_Bootstrap
 	
 		$router->addRoute( 'object-menu-getAlbums', new Zend_Controller_Router_Route("/:entity/object-menu-getAlbums/", array( "module" => "image", "controller" => "image", "action" => "albums"  ) ) );
 		$router->addRoute( 'object-menu-getEvents', new Zend_Controller_Router_Route("object-menu-getEvents/:entity", array( "controller" => "index", "action" => "panoramio"  ) ) );
-		$router->addRoute( 'object-menu-getPlaces', new Zend_Controller_Router_Route("object-menu-getPlaces/:entity", array( "controller" => "index", "action" => "panoramio"  ) ) );
+		$router->addRoute( 'object-menu-getPlaces', new Zend_Controller_Router_Route("object-menu-getPlaces/:entity", array( "module" => "entity", "controller" => "place", "action" => "index"  ) ) );
 		$router->addRoute( 'object-menu-getAbout', new Zend_Controller_Router_Route("object-menu-getAbout/:entity", array( "module" => "entity", "controller" => "information", "action" => "all-information"  ) ) );
 		$router->addRoute( 'object-menu-getAbouts', new Zend_Controller_Router_Route("object-menu-getAbouts/:entity", array( "module" => "entity", "controller" => "description", "action" => "descriptions"  ) ) );
 		$router->addRoute( 'user-group', new Zend_Controller_Router_Route("/:entity/group/:group", array( "module" => "entity", "controller" => "user", "action" => "group"  ) ) );
@@ -29,6 +29,11 @@ class Entity_Bootstrap extends Zend_Application_Module_Bootstrap
 		$router->addRoute( 'object-taskmenu-like', new Zend_Controller_Router_Route("object-taskmenu-like/:entity", array( "module" => "entity", "controller" => "user", "action" => "like"  ) ) );
 		$router->addRoute( 'object-taskmenu-addToGroup', new Zend_Controller_Router_Route("object-taskmenu-addtogroup/:entity/:group", array( "module" => "entity", "controller" => "user", "action" => "addtogroup"  ) ) );
 		$router->addRoute( 'object-menu-getDesktop', new Zend_Controller_Router_Route("object-menu-getdesktop/:entity", array( "module" => "entity", "controller" => "desktop", "action" => "index"  ) ) );
+		$router->addRoute( 'object-taskmenu-i-was-there', new Zend_Controller_Router_Route("object-taskmenu-i-was-there/:attraction", array( 
+            "module" => "entity", 
+            "controller" => "user", 
+            "action" => "i-was-there"  
+        ) ) );
  
 		$router->addRoute( 'place', new Zend_Controller_Router_Route("place/:entity", array( "module" => "entity", "controller" => "place", "action" => "place"  ) ) );
 		

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/C:/xampp/htdocs/moondeebox/application/modules/entity/controllers/InformationController.php</file>
-        <file>file:/C:/xampp/htdocs/moondeebox/application/modules/entity/views/scripts/desktop/index.phtml</file>
-        <file>file:/C:/xampp/htdocs/moondeebox/application/modules/image/controllers/ImageController.php</file>
-        <file>file:/C:/xampp/htdocs/moondeebox/application/modules/image/views/scripts/image/intro-images.phtml</file>
-        <file>file:/C:/xampp/htdocs/moondeebox/library/Moondee/Entity.php</file>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group/>
     </open-files>
 </project-private>

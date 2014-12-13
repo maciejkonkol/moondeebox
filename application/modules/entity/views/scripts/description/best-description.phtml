@@ -3,20 +3,23 @@
 		<h3>Opis (<?php echo $this->entity->getNumDescriptions(); ?>)</h3>
 	</div>
 	<div class="content" >
-		<div style="float: left; width: 31%; margin: 2%; height: 10.6em; background: url( '<?php echo $this->baseUrl(); ?>/images/goya.jpg' ); background-size: cover;" >
-			
-		</div>
-		<div style="float: left; width: 65%; margin-top: 2%;" >
-			<div style="float: left; width: 49%; margin-rigth: 1%; " >
-				<a href="<?php echo $this->url( array( 'entity' => $this->entity->getId() ), 'add-description' ); ?>" style="display: inline-block; border: solid #dddddd 1px; background-color: #f4f4f4; text-decoration: none; color: #555555; width: 99%; text-align: center; line-height: 3em;" >Dodaj opis</a>
-				<a href="<?php echo $this->url( array( 'entity' => $this->entity->getId() ), 'descriptions' ); ?>" style="display: inline-block; border: solid #dddddd 1px; background-color: #f4f4f4; text-decoration: none; color: #555555; width: 99%; text-align: center; line-height: 3em; margin-top: 0.3em;" >Inne opisy (<?php echo $this->entity->getNumDescriptions(); ?>)</a>
-			</div>
-			<div style="float: left; width: 47%; margin-left: 2%;" id="mark-describe" >
-				<?php echo $this->render('description/partial/describe-mark.phtml'); ?>
-			</div>
-		</div>
-		<?php if( $this->description ): ?>
+        <?php if( $this->description ): ?>
+            <div style="float: left; width: 31%; margin: 2%; height: 10.6em; background: url( '<?php echo $this->baseUrl(); ?>/images/goya.jpg' ); background-size: cover;" >
+
+            </div>
+            <div style="float: left; width: 65%; margin-top: 2%;" >
+                <div style="float: left; width: 49%; margin-rigth: 1%; " >
+                    <a href="<?php echo $this->url( array( 'entity' => $this->entity->getId() ), 'add-description' ); ?>" style="display: inline-block; border: solid #dddddd 1px; background-color: #f4f4f4; text-decoration: none; color: #555555; width: 99%; text-align: center; line-height: 3em;" >Dodaj opis</a>
+                    <a href="<?php echo $this->url( array( 'entity' => $this->entity->getId() ), 'descriptions' ); ?>" style="display: inline-block; border: solid #dddddd 1px; background-color: #f4f4f4; text-decoration: none; color: #555555; width: 99%; text-align: center; line-height: 3em; margin-top: 0.3em;" >Inne opisy (<?php echo $this->entity->getNumDescriptions(); ?>)</a>
+                </div>
+                <div style="float: left; width: 47%; margin-left: 2%;" id="mark-describe" >
+                    <?php echo $this->render('description/partial/describe-mark.phtml'); ?>
+                </div>
+            </div>
 			<p><?php echo nl2br( $this->description->getText() ); ?></p>
+        <?php else: ?>
+            <p>nie ma jeszcze opisu</p>
 		<?php endif; ?>
+        <p>Byłeś, widziałeś? <a href="<?php echo $this->url( array( 'entity' => $this->entity->getId() ), 'add-description' ); ?>" >Dodaj opis.</a></p>
 	</div>
 </div>

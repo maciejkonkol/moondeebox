@@ -18,25 +18,25 @@ class Moondee_Image_Helper
 	 * @access public
      */ 
 	static public function getAlbumImages( $album_id, $owner = null ) {
-		$model = new Moondee_Image_Model_Image();
-		
-		$data = $model->fetchAll( 'album = '.$album_id );
-		
-		$images = array();
-		
-		if( $data ){
-			foreach( $data as $row ){
-				$image = new Moondee_Application_Proxy( new Moondee_Image( $row ) );
-				
-				if( $owner ){
-					$image->setOwner( $owner );
-				}
-				
-				$images[ $row['id'] ] = new Moondee_Application_Proxy( $image );
-			}
-		}
-		
-		return $images;
+            $model = new Moondee_Image_Model_Image();
+
+            $data = $model->fetchAll( 'album = '.$album_id );
+
+            $images = array();
+
+            if( $data ){
+                foreach( $data as $row ){
+                    $image = new Moondee_Application_Proxy( new Moondee_Image( $row ) );
+                    
+                    if( $owner ){
+                        $image->setOwner( $owner );
+                    }
+
+                    $images[ $row['id'] ] = new Moondee_Application_Proxy( $image );
+                }
+            }
+
+            return $images;
 	}
 	
 	/**
@@ -62,6 +62,28 @@ class Moondee_Image_Helper
 			$model_moondee_object = new Moondee_Application_Model_Object();
 			$model_moondee_object->delete('id IN ('.implode( ', ', $images_id ).') ');
 		}
+	}
+	
+	/**
+     * Metoda pobiera obrazy nalezace do obiektu
+     *
+	 * @param integer $entity_id id obiektu ktorego obrazy maja byc pobrane
+	 * @param integer $limit ilosc obrazkow ktora ma zostac zwrocona
+	 * @param integer $start pozycja od ktorej maja zostac pobrane obrazki
+	 * @return Moondee_Image[] $images tablica obrazków 
+	 * @access public
+     */ 
+	static public function getEntityImages( $entity_id, $limit = null, $start = null ){
+        $model = new Moondee_Image_Model_Image();
+        $data = $model->getEntityImage( $entity_id, $limit, $start );
+        
+        $images = array();
+        
+        foreach ( $data as $row ) {
+            $images[] = new Moondee_Image( $row );
+        }
+		
+		return $images;
 	}
 
 }

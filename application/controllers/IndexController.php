@@ -18,7 +18,7 @@ class IndexController extends Zend_Controller_Action
 			if( $form->isValid( $postData )){
 				
 				$user = Moondee_Auth::login( $postData['email'], $postData['password'] );
-				echo '<pre>ooo'; print_r( $user ); echo '</pre>';
+				echo '<pre>ooo'.$user->id; print_r( $user ); echo '</pre>';
 			}
 			
 		}

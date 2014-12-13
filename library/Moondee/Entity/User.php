@@ -122,7 +122,7 @@ class Moondee_Entity_User extends Moondee_Entity
      * @return void
      */ 
 	public function addDefaultGroups() {
-		$this->groups = array_merge( $this->groups , $groups = Moondee_Entity_Group_Helper::getUserDefaultGroups( $this->id ) );
+            $this->groups = array_merge( $this->groups , $groups = Moondee_Entity_Group_Helper::getUserDefaultGroups( $this->id ) );
 	}
 
 	/**
@@ -236,14 +236,25 @@ class Moondee_Entity_User extends Moondee_Entity
 	}
 
 	/**
-     * Metoda sprawdza czy uzytkownik byl w miejscu o id podanym w parametrze
+     * Metoda sprawdza czy uzytkownik byl w atrakcji o id podanym w parametrze
      *
-	 * @param integer $place_id
+	 * @param integer $attraction_id Id atrakcji
      * @return bool
 	 * @access public
      */ 
-	public function ifWasThere( $place_id ) {
-		return Moondee_Entity_Attraction_Place_Helper::ifWasThere( $this->id , $place_id );
+	public function ifWasThere( $attraction_id ) {
+		return Moondee_Entity_Attraction_Helper::ifWasThere( $this->id , $attraction_id );
+	}
+
+	/**
+     * Metoda dadaje atrakcje w ktorej byl uzytkownik
+     *
+	 * @param integer $attraction_id Id atrakcji
+     * @return void
+	 * @access public
+     */ 
+	public function iWasThere( $attraction_id ) {
+		return Moondee_Entity_Attraction_Helper::iWasThere( $this->id , $attraction_id );
 	}
 
 	/**
@@ -324,16 +335,35 @@ class Moondee_Entity_User extends Moondee_Entity
 		return 'Jastarnia';
 	}
 
-	/**
-     * Metoda zwraca pozycje menu obrazkow
-     *
-     * @return Moondee_Application_Menu_Submenu_Position[]
-     */ 
-	public function getImageMenuPositions() {
-		return array(
-			new Moondee_Application_Menu_Submenu_Position('Albumy', array( "module" => "image", "controller" => "image", "action" => "albums", "entity" => $this->id ) ),
-			new Moondee_Application_Menu_Submenu_Position('Wszystkie Foty', array( "module" => "image", "controller" => "image", "action" => "albums", "entity" => $this->id ))
-		);
+    /**
+    * Metoda zwraca pozycje menu obrazkow
+    *
+    * @return Moondee_Application_Menu_Submenu_Position[]
+    */ 
+    public function getImageMenuPositions() {
+        return array(
+            new Moondee_Application_Menu_Submenu_Position('Albumy', array( "module" => "image", "controller" => "image", "action" => "albums", "entity" => $this->id ) ),
+            new Moondee_Application_Menu_Submenu_Position('Wszystkie Foty', array( "module" => "image", "controller" => "image", "action" => "all-images", "entity" => $this->id ))
+        );
+    }
+
+    /**
+    * Metoda dodaje obrazek
+    *
+    * @param Zend_Form_Element_File $file 
+    * @return bool
+    * @access public
+    */  
+    public function addImage( $file ){
+		$date = date('Y-m-d');
+		
+		$album = $this->albumExist( $date );
+				
+		if( $album === null ){
+			$album = $this->addAlbum( $date );
+		}
+		
+		return $album->addImage($file);
 	}
 
 

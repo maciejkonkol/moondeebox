@@ -52,8 +52,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		
 		$router->addRoute( 'object', new Zend_Controller_Router_Route("/:entity", array( "module" => "entity", "controller" => "desktop", "action" => "index"  ) ) );
 		
-		$router->addRoute( 'image-image-albums', new Zend_Controller_Router_Route("/:entity/albums", array( "module" => "image", "controller" => "image", "action" => "albums"  ) ) );
-		
 		foreach( $menu->getPositions() as $position ){
 			$router->addRoute( 
 					$position->getRout(), 

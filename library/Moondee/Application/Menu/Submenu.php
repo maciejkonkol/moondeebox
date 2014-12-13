@@ -8,25 +8,27 @@
 
 class Moondee_Application_Menu_Submenu 
 {
-	/**
-	 * Tablica pozycji submenu
-	 *
-	 * @var Moondee_Application_Menu_Submenu_Position[]
-	 * @access protected
-	 */	
-	protected $positions = array();
+    /**
+    * Tablica pozycji submenu
+    *
+    * @var Moondee_Application_Menu_Submenu_Position[]
+    * @access protected
+    */	
+    protected $positions = array();
 	
 	
-	/**
-     * Konstruktor ustawia pozycje menu jesli zostaly podane w parametrze
-     *
-	 * @param Moondee_Application_Menu_Submenu_Position[] $positions tablicja pozycji menu
-     * @return void
-	 * @access public
-     */
-	public function __construct( $positions = null ) {
-		$this->setPositions( $positions );
-	}
+    /**
+    * Konstruktor ustawia pozycje menu jesli zostaly podane w parametrze
+    *
+    * @param Moondee_Application_Menu_Submenu_Position[] $positions tablicja pozycji menu
+    * @return void
+    * @access public
+    */
+    public function __construct( $positions = null ) {
+        if( $positions ){
+            $this->setPositions( $positions );
+        }
+    }
 	
 	/**
      * Metoda ustawia pozycje podane w parametrze

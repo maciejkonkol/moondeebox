@@ -4,24 +4,25 @@ class Entity_DescriptionController extends Zend_Controller_Action
 {
 
     public function init(){
-		/* 
-		 * zmienna Zend_View_Helper_Action pochodzi z przerobionego pliku Zend_View_Helper_Action linia 130
-		 */
-		if( $this->_request->getParam( 'Zend_View_Helper_Action', 0 ) == 0 ){
-			$no_layout  = (int)$this->_request->getParam( 'no_layout', 0 );
-			$no_entity_template  = (int)$this->_request->getParam( 'no_entity_template', 0 );
+        /* 
+         * zmienna Zend_View_Helper_Action pochodzi z przerobionego pliku Zend_View_Helper_Action linia 130
+         */
 
-			if( $no_layout != 0 || $no_entity_template != 0 ){
-				$this->_helper->layout()->disableLayout(); 
-			}
+        if( $this->_request->getParam( 'Zend_View_Helper_Action', 0 ) == 0 ){
+            $no_layout  = (int)$this->_request->getParam( 'no_layout', 0 );
+            $no_entity_template  = (int)$this->_request->getParam( 'no_entity_template', 0 );
 
-			if( $no_entity_template == 0 ){
-				$this->_helper->viewRenderer->setNoController( true );				
-				
-				$this->_helper->viewRenderer('entity/object');
-				$this->view->entity_script = 'description/'.$this->getRequest()->getActionName().'.phtml';
-			}
-		}
+            if( $no_layout != 0 || $no_entity_template != 0 ){
+                    $this->_helper->layout()->disableLayout(); 
+            }
+
+            if( $no_entity_template == 0 ){
+                $this->_helper->viewRenderer->setNoController( true );				
+
+                $this->_helper->viewRenderer('entity/object');
+                $this->view->entity_script = 'description/'.$this->getRequest()->getActionName().'.phtml';
+            }
+        }
     }
 	
 
@@ -133,23 +134,23 @@ class Entity_DescriptionController extends Zend_Controller_Action
      */ 
     public function markDescriptionAction(){
 		
-		$object_id  = (int)$this->_request->getParam( 'object', null );
+        $object_id  = (int)$this->_request->getParam( 'object', null );
         $mark  = (int)$this->_request->getParam( 'mark', null );
 		
-		if( $object_id && ( $mark >= 0 && $mark <= 10 ) && Zend_Auth::getInstance()->hasIdentity() ){
-			$object = Moondee_Application_Factory::getMoondeeObject( $object_id );
-		}else{
-			$this->redirect( '/' );
-		}
-		
-		
-		
-		$object = Moondee_Application_Factory::getMoondeeObject( $object_id );
-		$this->view->result = $object->addMark( $mark );
-		
-		$this->view->mark = $mark;
-		$this->view->description = $object;
-	}
+        if( $object_id && ( $mark >= 0 && $mark <= 10 ) && Zend_Auth::getInstance()->hasIdentity() ){
+                $object = Moondee_Application_Factory::getMoondeeObject( $object_id );
+        }else{
+                $this->redirect( '/' );
+        }
+
+
+
+        $object = Moondee_Application_Factory::getMoondeeObject( $object_id );
+        $this->view->result = $object->addMark( $mark );
+
+        $this->view->mark = $mark;
+        $this->view->description = $object;
+    }
 	
 	/**
      * Metoda widoku odpowiedzialnego za wyswietlanie opisu
@@ -158,18 +159,26 @@ class Entity_DescriptionController extends Zend_Controller_Action
 	 * @access public
      */ 
     public function descriptionAction(){
-		
-		$description_id  = (int)$this->_request->getParam( 'description', null );
-		
-		if( $description_id ){
-			$description = new Moondee_Description( $description_id );
-		}else{
-			$this->redirect( '/' );
-		}
-		
-		$this->view->description = $description;
-		$this->view->entity = Moondee_Application_Factory::getMoondeeObject( $description->getObjectId() );
-	}
+        $description_id  = (int)$this->_request->getParam( 'description', 0 );
+        
+        if( $description_id ){
+            $description = Moondee_Application_Factory::getMoondeeObject( $description_id );
+            $entity_id = $description->getObjectId();
+            $entity = Moondee_Application_Factory::getMoondeeObject( $entity_id );
+        }else{
+            $entity_id  = (int)$this->_request->getParam( 'entity', 0 );
+            
+            if( $entity_id ){
+                $entity = Moondee_Application_Factory::getMoondeeObject( $entity_id );
+                $description = $entity->getDescription();
+            }else{
+                $this->redirect( '/' );
+            }
+        }
+
+        $this->view->description = $description;
+        $this->view->entity = Moondee_Application_Factory::getMoondeeObject( $entity_id );
+    }
 	
 
 	

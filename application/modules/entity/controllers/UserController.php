@@ -26,7 +26,7 @@ class Entity_UserController extends Zend_Controller_Action
 		if( $object_id ){
 			$object = Moondee_Application_Factory::getMoondeeObject( $object_id );
 		}else{
-			$this->redirect('');			
+			//$this->redirect('');			
 		}
 		
 		
@@ -134,6 +134,22 @@ class Entity_UserController extends Zend_Controller_Action
 		$object_id  = (int)$this->_request->getParam( 'object', null );
 		
 		$user->like( $object_id );
+		
+		$this->view->entity = $user;
+		
+    }
+
+    public function iWasThereAction(){
+        
+        $user = Zend_Auth::getInstance()->getIdentity();
+		
+		if( !$user ){
+			$this->redirect('');
+		}
+		
+		$attraction_id  = (int)$this->_request->getParam( 'attraction', 0 );
+        
+        $user->iWasThere( $attraction_id );
 		
 		$this->view->entity = $user;
 		

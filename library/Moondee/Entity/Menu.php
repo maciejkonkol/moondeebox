@@ -47,7 +47,7 @@ class Moondee_Entity_Menu
 	);
 	
 	/**
-	 * Tablica metod miejscado jakich wymagany jest dostep aby dodać pozycje menu
+	 * Tablica metod miejsca do jakich wymagany jest dostep aby dodać pozycje menu
 	 *
 	 * @var string[]
 	 * @access protected

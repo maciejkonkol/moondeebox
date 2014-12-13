@@ -1,13 +1,13 @@
 <div id="screenSizeContainer">
 			
 </div>
-<div id="objectBackgroundFoto" style="height: 0%; background-image: url(/../woo/application/layouts/standard/images/profil2.jpg); ">
+<div id="objectBackgroundFoto" style="background-image: url(/../moondeebox/images/flaka-image.jpg); ">
 	<div id="objectMenu" >
 		<div class="avatarBackground top" ></div>
 		<div class="avatarBackground bottom" ></div>
 
 		<div class="avatarBox" >
-			<img src="/wooavatar.jpg" class="avatar" align="middle" >
+                    <img src="<?php echo $this->baseUrl(); ?>/images/goya.jpg" class="avatar" align="middle" >
 		</div>
 		
 		<?php echo $this->entity->getRealObject()->getTaskMenu()->render() ; ?>

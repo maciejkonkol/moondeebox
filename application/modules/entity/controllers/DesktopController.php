@@ -7,6 +7,7 @@ class Entity_DesktopController extends Zend_Controller_Action
 		/* 
 		 * zmienna Zend_View_Helper_Action pochodzi z przerobionego pliku Zend_View_Helper_Action linia 130
 		 */
+        
 		if( $this->_request->getParam( 'Zend_View_Helper_Action', 0 ) == 0 ){
 			$no_layout  = (int)$this->_request->getParam( 'no_layout', 0 );
 			$no_entity_template  = (int)$this->_request->getParam( 'no_entity_template', 0 );
@@ -30,7 +31,7 @@ class Entity_DesktopController extends Zend_Controller_Action
 		if( $object_id ){
 			$object = Moondee_Application_Factory::getMoondeeObject( $object_id );
 		}else{
-			$this->redirect('');			
+			//$this->redirect('');			
 		}
 		
 		$this->view->entity = $object;
