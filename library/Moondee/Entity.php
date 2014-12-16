@@ -577,6 +577,7 @@ abstract class Moondee_Entity extends Moondee_Application_MoondeeDatabaseObject
     abstract public function addImage( $file );
 
 
+
 	
 	
 }

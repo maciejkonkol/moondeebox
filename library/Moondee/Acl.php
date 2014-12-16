@@ -82,11 +82,17 @@ class Moondee_Acl
     * @return bool
     */
     public function isAllowed( $object, $method, $user_id ) {
+        
+        
+        
+        //$group_id = $this->getGroupMembership( $object, $user_id ); $group_id[0] = 0; $this->getResource( $object )->isAllowed( $method, $group_id );
+        
+        
         if( !$object->getOwner() ){
             return true;
-        }
+        } 
         
-        if( $object->getOwner() == $user_id ){
+        if( $object->getOwner() == $user_id ){ 
             return true;
         }
         

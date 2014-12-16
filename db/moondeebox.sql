@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Gru 2014, 22:37
+-- Czas generowania: 16 Gru 2014, 23:04
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `activity` (
 `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `activity`
@@ -37,7 +37,8 @@ CREATE TABLE IF NOT EXISTS `activity` (
 
 INSERT INTO `activity` (`id`, `name`) VALUES
 (1, 'editor'),
-(2, 'creator');
+(2, 'creator'),
+(3, 'like');
 
 -- --------------------------------------------------------
 
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `album` (
   `owner` bigint(20) NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL DEFAULT '',
   `describe` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=117 ;
 
 --
 -- Zrzut danych tabeli `album`
@@ -59,7 +60,31 @@ CREATE TABLE IF NOT EXISTS `album` (
 INSERT INTO `album` (`id`, `owner`, `title`, `describe`) VALUES
 (16, 1, 'maciej', ''),
 (44, 1, 'album 2', ''),
-(58, 1, 'test', '');
+(58, 1, 'test', ''),
+(94, 1, '2014-12-12', ''),
+(111, 79, 'test201479', ''),
+(114, 10, 'Jastarnia10', ''),
+(116, 1, '2014-12-15', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `album_permission`
+--
+
+CREATE TABLE IF NOT EXISTS `album_permission` (
+`id` bigint(20) NOT NULL,
+  `object_id` bigint(20) NOT NULL DEFAULT '0',
+  `group_id` bigint(20) NOT NULL DEFAULT '0',
+  `method` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Zrzut danych tabeli `album_permission`
+--
+
+INSERT INTO `album_permission` (`id`, `object_id`, `group_id`, `method`) VALUES
+(1, 111, 0, 'addImage');
 
 -- --------------------------------------------------------
 
@@ -73,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `description` (
   `object_id` bigint(20) NOT NULL DEFAULT '0',
   `text` text NOT NULL,
   `kk` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
 
 --
 -- Zrzut danych tabeli `description`
@@ -88,7 +113,8 @@ INSERT INTO `description` (`id`, `writer`, `object_id`, `text`, `kk`) VALUES
 (71, 1, 1, 'Pracuję w domu, przez większość czasu eksplorując sieć.\r\nWyszukuję różne treści i dane, kategoryzuję je, analizuję, opracowuję i produkuję raporty, stanowiące wyciąg z przetworzonej masy informacji.\r\n\r\nPrywatnie często robię to samo, tylko tematykę sobie sama wybieram. No i wtedy rzadko takie badanie kończy się raportem, raczej krótkim podsumowaniem. Czasem nie kończy się wcale, tylko zostaje w mojej głowie.\r\n\r\nUwielbiam sieci społecznościowe. Kiedyś Usenet, potem różne fora, GoldenLine itp. Czytam, obserwuję ich rozwój i momenty największej popularności oraz powolne gaśnięcie.  \r\n\r\nNa G+ wrzucam wszystko co wydaje mi się warte przeczytania, zastanowienia lub obejrzenia.\r\nNa profil główny trafiają najważniejsze wpisy. Teksty z tematyki społecznej, gospodarczej i mediów, szczególnie internetowych. Często wyniki badań (moich lub cudzych). Polityki nie tykam. ', 0),
 (73, 1, 72, 'Testowy opis miejsca', 0),
 (74, 1, 72, 'Testowy opis miejsca 2', 0),
-(75, 1, 72, 'Maciej testuje dodawanie opisow\r\n', 0);
+(75, 1, 72, 'Maciej testuje dodawanie opisow\r\n', 0),
+(83, 1, 79, '123456', 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `description_permission` (
   `object_id` bigint(20) NOT NULL DEFAULT '0',
   `group_id` bigint(20) NOT NULL DEFAULT '0',
   `method` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `description_permission`
@@ -109,7 +135,8 @@ CREATE TABLE IF NOT EXISTS `description_permission` (
 
 INSERT INTO `description_permission` (`id`, `object_id`, `group_id`, `method`) VALUES
 (1, 59, 0, 'getMark'),
-(2, 59, 0, 'getText');
+(2, 59, 0, 'getText'),
+(3, 79, 0, 'addImage');
 
 -- --------------------------------------------------------
 
@@ -141,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `group` (
 `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `owner` bigint(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
 -- Zrzut danych tabeli `group`
@@ -172,7 +199,9 @@ INSERT INTO `group` (`id`, `name`, `owner`) VALUES
 (28, 'Administratorzy', 57),
 (29, 'Znajomi', 2),
 (30, 'Administratorzy', 71),
-(31, 'Administratorzy', 72);
+(31, 'Administratorzy', 72),
+(32, 'Administratorzy', 79),
+(33, 'Administratorzy', 115);
 
 -- --------------------------------------------------------
 
@@ -218,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `path` varchar(255) NOT NULL,
   `file` varchar(255) NOT NULL,
   `extension` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=121 ;
 
 --
 -- Zrzut danych tabeli `image`
@@ -226,7 +255,52 @@ CREATE TABLE IF NOT EXISTS `image` (
 
 INSERT INTO `image` (`id`, `album`, `title`, `describe`, `date_execution`, `date_added`, `server`, `path`, `file`, `extension`) VALUES
 (35, 16, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '35', 'jpg'),
-(45, 16, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '45', 'jpg');
+(45, 16, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '45', 'jpg'),
+(78, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '78', 'jpg'),
+(84, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '84', 'jpg'),
+(85, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '85', 'jpg'),
+(86, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '86', 'jpg'),
+(87, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '87', 'jpg'),
+(88, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '88', 'jpg'),
+(89, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '89', 'jpg'),
+(90, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '90', 'jpg'),
+(91, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '91', 'jpg'),
+(92, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '92', 'jpg'),
+(93, 58, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '93', 'jpg'),
+(95, 94, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/00', '95', 'jpg'),
+(112, 111, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/01', '12', 'jpg'),
+(113, 111, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/01', '13', 'jpg'),
+(120, 116, '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '00/00/00/00/00/00/00/00/01', '20', 'jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `image_permission`
+--
+
+CREATE TABLE IF NOT EXISTS `image_permission` (
+`id` bigint(20) NOT NULL,
+  `object_id` bigint(20) NOT NULL DEFAULT '0',
+  `group_id` bigint(20) NOT NULL DEFAULT '0',
+  `method` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Zrzut danych tabeli `image_permission`
+--
+
+INSERT INTO `image_permission` (`id`, `object_id`, `group_id`, `method`) VALUES
+(1, 120, 1, 'getAlbum'),
+(2, 120, 1, 'getSrc'),
+(3, 120, 1, 'getExtension'),
+(4, 120, 1, 'getFile'),
+(5, 120, 1, 'getPath'),
+(6, 120, 1, 'getServer'),
+(7, 120, 1, 'getOwner'),
+(8, 120, 1, 'getDate_added'),
+(9, 120, 1, 'getDate_execution'),
+(10, 120, 1, 'getDescribe'),
+(11, 120, 1, 'getTitle');
 
 -- --------------------------------------------------------
 
@@ -239,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `like` (
   `user_id` bigint(20) NOT NULL DEFAULT '0',
   `object_id` bigint(20) NOT NULL DEFAULT '0',
   `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Zrzut danych tabeli `like`
@@ -247,7 +321,8 @@ CREATE TABLE IF NOT EXISTS `like` (
 
 INSERT INTO `like` (`id`, `user_id`, `object_id`, `date`) VALUES
 (2, 1, 2, '2013-12-16 11:13:22'),
-(3, 1, 12, '2013-12-17 19:56:00');
+(3, 1, 12, '2013-12-17 19:56:00'),
+(4, 1, 0, '2014-12-10 18:27:10');
 
 -- --------------------------------------------------------
 
@@ -260,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `mark` (
   `judge` bigint(20) NOT NULL DEFAULT '0',
   `object` bigint(20) NOT NULL DEFAULT '0',
   `value` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Zrzut danych tabeli `mark`
@@ -269,7 +344,8 @@ CREATE TABLE IF NOT EXISTS `mark` (
 INSERT INTO `mark` (`id`, `judge`, `object`, `value`) VALUES
 (13, 1, 10, 7),
 (14, 1, 72, 10),
-(18, 1, 73, 10);
+(18, 1, 73, 10),
+(19, 1, 83, 10);
 
 -- --------------------------------------------------------
 
@@ -282,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `mark_average` (
   `object` bigint(20) NOT NULL DEFAULT '0',
   `value` float NOT NULL DEFAULT '0',
   `num` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Zrzut danych tabeli `mark_average`
@@ -296,7 +372,11 @@ INSERT INTO `mark_average` (`id`, `object`, `value`, `num`) VALUES
 (5, 73, 6.66667, 9),
 (6, 74, 4, 4),
 (7, 72, 10, 1),
-(8, 75, 0, 0);
+(8, 75, 0, 0),
+(9, 71, 0, 0),
+(10, 80, 0, 0),
+(11, 81, 0, 0),
+(12, 83, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -333,7 +413,7 @@ INSERT INTO `menu` (`id`, `module`, `controller`, `action`, `label`, `icon`, `ro
 CREATE TABLE IF NOT EXISTS `moondee_object` (
 `id` bigint(20) NOT NULL,
   `class` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=121 ;
 
 --
 -- Zrzut danych tabeli `moondee_object`
@@ -399,7 +479,47 @@ INSERT INTO `moondee_object` (`id`, `class`) VALUES
 (74, 'Moondee_Description'),
 (75, 'Moondee_Description'),
 (76, 'Moondee_Description'),
-(77, 'Moondee_Description');
+(77, 'Moondee_Description'),
+(78, 'Moondee_Image'),
+(79, 'Moondee_Entity_Attraction_Place'),
+(80, 'Moondee_Description'),
+(81, 'Moondee_Description'),
+(82, 'Moondee_Description'),
+(83, 'Moondee_Description'),
+(84, 'Moondee_Image'),
+(85, 'Moondee_Image'),
+(86, 'Moondee_Image'),
+(87, 'Moondee_Image'),
+(88, 'Moondee_Image'),
+(89, 'Moondee_Image'),
+(90, 'Moondee_Image'),
+(91, 'Moondee_Image'),
+(92, 'Moondee_Image'),
+(93, 'Moondee_Image'),
+(94, 'Moondee_Image_Album'),
+(95, 'Moondee_Image'),
+(96, 'Moondee_Image_Album'),
+(97, 'Moondee_Image_Album'),
+(98, 'Moondee_Image_Album'),
+(99, 'Moondee_Image_Album'),
+(100, 'Moondee_Image_Album'),
+(101, 'Moondee_Image_Album'),
+(102, 'Moondee_Image_Album'),
+(103, 'Moondee_Image_Album'),
+(104, 'Moondee_Image_Album'),
+(105, 'Moondee_Image_Album'),
+(106, 'Moondee_Image_Album'),
+(107, 'Moondee_Image_Album'),
+(108, 'Moondee_Image_Album'),
+(109, 'Moondee_Image_Album'),
+(110, 'Moondee_Image_Album'),
+(111, 'Moondee_Image_Album'),
+(112, 'Moondee_Image'),
+(113, 'Moondee_Image'),
+(114, 'Moondee_Image_Album'),
+(115, 'Moondee_Entity_Attraction_Place'),
+(116, 'Moondee_Image_Album'),
+(120, 'Moondee_Image');
 
 -- --------------------------------------------------------
 
@@ -412,7 +532,7 @@ CREATE TABLE IF NOT EXISTS `object-object-activity` (
   `object1_id` bigint(20) NOT NULL DEFAULT '0',
   `object2_id` bigint(20) NOT NULL DEFAULT '0',
   `activity_id` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Zrzut danych tabeli `object-object-activity`
@@ -422,7 +542,8 @@ INSERT INTO `object-object-activity` (`id`, `object1_id`, `object2_id`, `activit
 (1, 1, 10, 1),
 (2, 1, 57, 2),
 (3, 1, 71, 2),
-(4, 1, 72, 2);
+(4, 1, 72, 2),
+(5, 1, 79, 2);
 
 -- --------------------------------------------------------
 
@@ -434,7 +555,7 @@ CREATE TABLE IF NOT EXISTS `place` (
 `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `owner` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=116 ;
 
 --
 -- Zrzut danych tabeli `place`
@@ -445,7 +566,9 @@ INSERT INTO `place` (`id`, `name`, `owner`) VALUES
 (12, 'Puck', 0),
 (57, 'uuu', 1),
 (71, 'wladek', 0),
-(72, 'torba', 0);
+(72, 'torba', 0),
+(79, 'test2014', 0),
+(115, 'maciejkonkol', 1);
 
 -- --------------------------------------------------------
 
@@ -501,7 +624,15 @@ CREATE TABLE IF NOT EXISTS `user-place` (
 `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT '0',
   `place_id` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Zrzut danych tabeli `user-place`
+--
+
+INSERT INTO `user-place` (`id`, `user_id`, `place_id`) VALUES
+(1, 1, 71),
+(2, 1, 79);
 
 -- --------------------------------------------------------
 
@@ -548,6 +679,12 @@ ALTER TABLE `album`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `album_permission`
+--
+ALTER TABLE `album_permission`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `description`
 --
 ALTER TABLE `description`
@@ -581,6 +718,12 @@ ALTER TABLE `group-object`
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `image_permission`
+--
+ALTER TABLE `image_permission`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -657,22 +800,27 @@ ALTER TABLE `user_permission`
 -- AUTO_INCREMENT dla tabeli `activity`
 --
 ALTER TABLE `activity`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT dla tabeli `album`
 --
 ALTER TABLE `album`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=117;
+--
+-- AUTO_INCREMENT dla tabeli `album_permission`
+--
+ALTER TABLE `album_permission`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT dla tabeli `description`
 --
 ALTER TABLE `description`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=77;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=84;
 --
 -- AUTO_INCREMENT dla tabeli `description_permission`
 --
 ALTER TABLE `description_permission`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT dla tabeli `email`
 --
@@ -682,7 +830,7 @@ MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT dla tabeli `group`
 --
 ALTER TABLE `group`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT dla tabeli `group-object`
 --
@@ -692,22 +840,27 @@ MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 -- AUTO_INCREMENT dla tabeli `image`
 --
 ALTER TABLE `image`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=121;
+--
+-- AUTO_INCREMENT dla tabeli `image_permission`
+--
+ALTER TABLE `image_permission`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT dla tabeli `like`
 --
 ALTER TABLE `like`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `mark`
 --
 ALTER TABLE `mark`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT dla tabeli `mark_average`
 --
 ALTER TABLE `mark_average`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT dla tabeli `menu`
 --
@@ -717,17 +870,17 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT dla tabeli `moondee_object`
 --
 ALTER TABLE `moondee_object`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=121;
 --
 -- AUTO_INCREMENT dla tabeli `object-object-activity`
 --
 ALTER TABLE `object-object-activity`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT dla tabeli `place`
 --
 ALTER TABLE `place`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=73;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=116;
 --
 -- AUTO_INCREMENT dla tabeli `place_permission`
 --
@@ -742,7 +895,7 @@ MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT dla tabeli `user-place`
 --
 ALTER TABLE `user-place`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `user_permission`
 --

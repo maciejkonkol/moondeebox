@@ -49,8 +49,6 @@ class Moondee_Entity_Attraction_Helper
         if ( !self::ifWasThere( $user_id, $attraction_id ) ) {
             $attraction_class = Moondee_Entity_Helper::getEntityClass( $attraction_id );
             
-            echo $attraction_class.'555555'.' '.$attraction_id;
-        
             if( $attraction_class == 'Moondee_Entity_Attraction_Place' ){
                 $model = new Moondee_Entity_Model_UserPlace();
                 $model->insert( array(
@@ -64,5 +62,36 @@ class Moondee_Entity_Attraction_Helper
             }
         }
 	}
+    
+    /**
+    * Metoda zwraca id właściciela atrakcji
+    *
+    * @param integer $entity_id Id obiektu ktorego właściciel ma zostać zwrocony
+    * @param string $class Klasa obiektu ktorego właściciel ma zostać zwrocony
+    * @return integer
+    * @access public
+    */
+    static public function getAttractionOwner( $entity_id, $class = null ){
+		if( $class === null ){
+			$class = Moondee_Entity_Helper::getEntityClass( $entity_id );
+		}
+		
+		switch ( $class ) {
+			case 'Moondee_Entity_Attraction_Place':
+				$object_model = new Moondee_Entity_Model_Place();
+				break;
+			case 'Moondee_Entity_Attraction_Event':
+				$object_model = new Moondee_Entity_Model_Event();
+				break;
+		}
+
+        $row = $object_model->find( $entity_id )->current();
+
+        if( $row ){
+            return (integer) $row['owner'];
+        }else{
+            return null;
+        }
+    }
 }
 ?>

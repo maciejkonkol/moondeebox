@@ -281,7 +281,24 @@ class Moondee_Image extends Moondee_Application_MoondeeDatabaseObject
 	public function getAlbum() {
 		return $this->album;
 	}
-
+	
+	/**
+    * Metoda zwraca id obiektu który jest pierwotnym właścicielem czyli takim który sam nie posiada żadnego właściciela
+    * 
+    * @return integer
+    * @access public
+    */  
+    public function getPrimaryParent(){
+		$owner_id = $this->getOwner();
+		
+		$owner_class = Moondee_Entity_Helper::getEntityClass( $owner_id );
+		
+		if( $owner_class == 'Moondee_Entity_User' ){
+			return $owner_id;
+		}else{
+			
+		}
+	}
 
 }
 ?>

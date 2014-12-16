@@ -121,6 +121,7 @@ class Moondee_Acl_Resource
      * @return bool
      */
     public function isAllowed( $method, $group_id ) {
+        echo '<pre>'; print_r( $group_id ); echo '</pre>';        echo '<pre>'; print_r( $this->getPermissions( $group_id ) ); echo '</pre>';
 		if( isset( $this->getPermissions( $group_id )[$method] ) ){
 			return true;
 		}else{

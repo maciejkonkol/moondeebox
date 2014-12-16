@@ -26,7 +26,7 @@ class Moondee_Image_Helper
 
             if( $data ){
                 foreach( $data as $row ){
-                    $image = new Moondee_Application_Proxy( new Moondee_Image( $row ) );
+                    $image = new Moondee_Image( $row );
                     
                     if( $owner ){
                         $image->setOwner( $owner );
@@ -70,7 +70,7 @@ class Moondee_Image_Helper
 	 * @param integer $entity_id id obiektu ktorego obrazy maja byc pobrane
 	 * @param integer $limit ilosc obrazkow ktora ma zostac zwrocona
 	 * @param integer $start pozycja od ktorej maja zostac pobrane obrazki
-	 * @return Moondee_Image[] $images tablica obrazków 
+	 * @return Moondee_Image[] tablica obrazków 
 	 * @access public
      */ 
 	static public function getEntityImages( $entity_id, $limit = null, $start = null ){
@@ -80,11 +80,35 @@ class Moondee_Image_Helper
         $images = array();
         
         foreach ( $data as $row ) {
-            $images[] = new Moondee_Image( $row );
+            $images[] = new Moondee_Application_Proxy( new Moondee_Image( $row ) );
         }
 		
 		return $images;
 	}
+	
+	/**
+     * Metoda zwraca nazwy publicznych metod klasy Moondee_Image które mają być udostępnione uprawnonym do tego obiektom
+     *
+	 * @return string[] tablica nazw metod
+	 * @access public
+     */ 
+	static public function getPrivilegesMethodsNames(){
+        return array(
+			'getAlbum',
+			'getSrc',
+			'getExtension',
+			'getFile',
+			'getPath',
+			'getServer',
+			'getOwner',
+			'getDate_added',
+			'getDate_execution',
+			'getDescribe',
+			'getTitle'
+		);
+	}
+	
+	
 
 }
 ?>

@@ -212,6 +212,7 @@ class Moondee_Image_Album extends Moondee_Application_MoondeeDatabaseObject
 		//Przenoszenie pliku do docelowego miejsca
 		if( $file->receive() ){
 			$image->save();
+			Moondee_Acl_Helper::createEntityPrivilages( $image, array( 1 ) );
 			Zend_Db_Table::getDefaultAdapter()->commit();			
 		}else{
 			Zend_Db_Table::getDefaultAdapter()->rollBack();
